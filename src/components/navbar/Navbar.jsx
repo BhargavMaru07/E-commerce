@@ -68,7 +68,11 @@ function Navbar() {
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     All Products
-                    <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
+                    <span
+                      className={`absolute bottom-0 left-0 h-[2px] ${
+                        mode === "dark" ? "bg-white" : "bg-pink-500"
+                      }  w-0 group-hover:w-full group-hover:animate-underline`}
+                    ></span>
                   </Link>
                   <div className="flow-root">
                     <Link
@@ -77,7 +81,11 @@ function Navbar() {
                       className="-m-2 block p-2 font-medium text-gray-900 relative hover:text-pink-600 group"
                     >
                       Order
-                      <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
+                      <span
+                        className={`absolute bottom-0 left-0 h-[2px] ${
+                          mode === "dark" ? "bg-white" : "bg-pink-500"
+                        }  w-0 group-hover:w-full group-hover:animate-underline`}
+                      ></span>
                     </Link>
                   </div>
 
@@ -88,7 +96,11 @@ function Navbar() {
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       admin
-                      <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
+                      <span
+                        className={`absolute bottom-0 left-0 h-[2px] ${
+                          mode === "dark" ? "bg-white" : "bg-pink-500"
+                        }  w-0 group-hover:w-full group-hover:animate-underline`}
+                      ></span>
                     </Link>
                   </div>
 
@@ -98,7 +110,11 @@ function Navbar() {
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Logout
-                      <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
+                      <span
+                        className={`absolute bottom-0 left-0 h-[2px] ${
+                          mode === "dark" ? "bg-white" : "bg-pink-500"
+                        }  w-0 group-hover:w-full group-hover:animate-underline`}
+                      ></span>
                     </a>
                   </div>
                   <div className="flow-root">
@@ -207,7 +223,11 @@ function Navbar() {
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     All Products
-                    <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
+                    <span
+                      className={`absolute bottom-0 left-0 h-[2px] ${
+                        mode === "dark" ? "bg-white" : "bg-pink-500"
+                      }  w-0 group-hover:w-full group-hover:animate-underline`}
+                    ></span>
                   </Link>
                   <Link
                     to={"/order"}
@@ -215,7 +235,11 @@ function Navbar() {
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     Order
-                    <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
+                    <span
+                      className={`absolute bottom-0 left-0 h-[2px] ${
+                        mode === "dark" ? "bg-white" : "bg-pink-500"
+                      }  w-0 group-hover:w-full group-hover:animate-underline`}
+                    ></span>
                   </Link>
                   <Link
                     to={"/dashboard"}
@@ -223,7 +247,11 @@ function Navbar() {
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     Admin
-                    <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
+                    <span
+                      className={`absolute bottom-0 left-0 h-[2px] ${
+                        mode === "dark" ? "bg-white" : "bg-pink-500"
+                      }  w-0 group-hover:w-full group-hover:animate-underline`}
+                    ></span>
                   </Link>
 
                   <a
@@ -231,7 +259,11 @@ function Navbar() {
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     Logout
-                    <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
+                    <span
+                      className={`absolute bottom-0 left-0 h-[2px] ${
+                        mode === "dark" ? "bg-white" : "bg-pink-500"
+                      }  w-0 group-hover:w-full group-hover:animate-underline`}
+                    ></span>
                   </a>
                 </div>
 
