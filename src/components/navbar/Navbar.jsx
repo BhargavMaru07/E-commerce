@@ -15,7 +15,14 @@ function Navbar() {
     <div className="bg-white sticky top-0 z-50  ">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
+        <Dialog
+          as="div"
+          className="relative z-40 lg:hidden"
+          onClose={setOpen}
+          open={open}
+        >
+          {" "}
+          {/*onclose and close both are required and onclose is useed when dialog is close , ana thi dialog i bar game tya click kariye aetle dialog bandh thy jai bvs onclose call thy che  */}
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -27,7 +34,6 @@ function Navbar() {
           >
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
-
           <div className="fixed inset-0 z-40 flex">
             <Transition.Child
               as={Fragment}
@@ -58,37 +64,41 @@ function Navbar() {
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <Link
                     to={"/allproducts"}
-                    className="text-sm font-medium text-gray-900 hover:underline"
+                    className="-m-2 block p-2 font-medium text-black-900 relative hover:text-pink-600 group"
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     All Products
+                    <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
                   </Link>
                   <div className="flow-root">
                     <Link
                       to={"/order"}
                       style={{ color: mode === "dark" ? "white" : "" }}
-                      className="-m-2 block p-2 font-medium text-gray-900 hover:underline"
+                      className="-m-2 block p-2 font-medium text-gray-900 relative hover:text-pink-600 group"
                     >
                       Order
+                      <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
                     </Link>
                   </div>
 
                   <div className="flow-root">
                     <Link
                       to={"/dashboard"}
-                      className="-m-2 block p-2 font-medium text-gray-900 hover:underline"
+                      className="-m-2 block p-2 font-medium text-gray-900 relative hover:text-pink-600 group"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       admin
+                      <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
                     </Link>
                   </div>
 
                   <div className="flow-root">
                     <a
-                      className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer hover:underline"
+                      className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer relative hover:text-pink-600 group"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Logout
+                      <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
                     </a>
                   </div>
                   <div className="flow-root">
@@ -193,31 +203,35 @@ function Navbar() {
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   <Link
                     to={"/allproducts"}
-                    className="text-sm font-medium text-gray-700 hover:underline"
+                    className="relative inline-block text-sm font-medium text-gray-700 hover:text-pink-600 group"
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     All Products
+                    <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
                   </Link>
                   <Link
                     to={"/order"}
-                    className="text-sm font-medium text-gray-700 hover:underline"
+                    className="relative inline-block text-sm font-medium text-gray-700 hover:text-pink-600 group"
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     Order
+                    <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
                   </Link>
                   <Link
                     to={"/dashboard"}
-                    className="text-sm font-medium text-gray-700 hover:underline "
+                    className="relative inline-block text-sm font-medium text-gray-700 hover:text-pink-600 group "
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     Admin
+                    <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
                   </Link>
 
                   <a
-                    className="text-sm font-medium text-gray-700 cursor-pointer hover:underline "
+                    className="relative inline-block text-sm font-medium text-gray-700 hover:text-pink-600 group "
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     Logout
+                    <span className="absolute bottom-0 left-0 h-[2px] bg-pink-500 w-0 group-hover:w-full group-hover:animate-underline"></span>
                   </a>
                 </div>
 
