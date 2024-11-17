@@ -178,7 +178,7 @@ function Navbar() {
               <button
                 type="button"
                 className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
-                onClick={() => setOpen(true)}
+                onClick={() => setOpen(!open)}
                 style={{
                   backgroundColor: mode === "dark" ? "rgb(80 82 87)" : "",
                   color: mode === "dark" ? "white" : "",

@@ -6,7 +6,7 @@ function HeroSection() {
       <img
         src="https://static.vecteezy.com/system/resources/previews/004/299/835/original/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-free-vector.jpg"
         alt="Hero Section Image"
-        // className='h-[380px] w-full'
+        className="2xl:h-[380px] w-full"    
       />
     </div>
   );
