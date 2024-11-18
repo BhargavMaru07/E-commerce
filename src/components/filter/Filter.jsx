@@ -40,8 +40,13 @@ function Filter() {
         <div className="flex items-center justify-between mt-4">
           <p className="font-medium">Filters</p>
           <button
-            className="px-4 py-2 bg-white hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md"
-            style={{ color: mode === "dark" ? "white" : "" }}
+            className={`px-4 py-2 bg-white ${
+              mode === "dark" ? "hover:bg-yellow-600" : "hover:bg-gray-200"
+            } text-gray-800 text-sm font-medium rounded-md`}
+            style={{
+              color: mode === "dark" ? "white" : "",
+              backgroundColor: mode === "dark" ? "rgb(64 66 70)" : "",
+            }}
           >
             Reset Filter
           </button>
