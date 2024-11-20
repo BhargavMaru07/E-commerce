@@ -3,7 +3,7 @@ import MyContext from '../../context/data/MyContext';
 
 function Track() {
   const context = useContext(MyContext);
-  const { toggleMode, mode } = context;
+  const { mode } = context;
   return (
     <div>
       <section className="text-gray-600 body-font">
