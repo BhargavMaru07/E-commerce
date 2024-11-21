@@ -21,7 +21,7 @@ function Testimonial() {
             What our <span className=" text-pink-500">customers</span> are
             saying
           </h2>
-          <div className="flex flex-wrap -m-4">
+          <div className="flex flex-wrap -m-1">
             <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
               <div className="h-full text-center">
                 <img
