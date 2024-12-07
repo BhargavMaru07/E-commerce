@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import Layout from '../../components/layout/Layout';
+import Layout from "../../components/layout/Layout";
 import MyContext from "../../context/data/MyContext";
+import Modal from "../../components/modal/Modal";
 
 function Cart() {
   const context = useContext(MyContext);
@@ -9,17 +10,20 @@ function Cart() {
   return (
     <Layout>
       <div
-        className="h-screen bg-gray-100 pt-5 "
+        className="min-h-screen bg-gray-100 pt-5"
         style={{
           backgroundColor: mode === "dark" ? "#282c34" : "",
           color: mode === "dark" ? "white" : "",
         }}
       >
-        <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
-        <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 ">
-          <div className="rounded-lg md:w-2/3 ">
+        <h1 className="mb-10 text-center text-xl sm:text-2xl font-bold">
+          Cart Items
+        </h1>
+        <div className="mx-auto max-w-5xl px-4 space-y-6 sm:space-y-0 md:space-x-6 md:flex md:space-y-0 xl:px-0">
+          {/* Left Section */}
+          <div className="md:w-2/3 space-y-4">
             <div
-              className="justify-between mb-6 rounded-lg border  drop-shadow-xl bg-white p-6  sm:flex  sm:justify-start"
+              className="rounded-lg border bg-white drop-shadow-xl p-4 flex flex-col sm:flex-row sm:justify-start"
               style={{
                 backgroundColor: mode === "dark" ? "rgb(32 33 34)" : "",
                 color: mode === "dark" ? "white" : "",
@@ -28,24 +32,24 @@ function Cart() {
               <img
                 src="https://dummyimage.com/400x400"
                 alt="product-image"
-                className="w-full rounded-lg sm:w-40"
+                className="w-full sm:w-32 md:w-40 rounded-lg object-contain"
               />
-              <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                <div className="mt-5 sm:mt-0">
+              <div className="flex flex-col sm:ml-4 sm:w-full sm:justify-between mt-4 sm:mt-0">
+                <div>
                   <h2
-                    className="text-lg font-bold text-gray-900"
+                    className="text-lg font-bold"
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     This is title
                   </h2>
-                  <h2
-                    className="text-sm  text-gray-900"
+                  <p
+                    className="text-sm mt-1"
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     desc
-                  </h2>
+                  </p>
                   <p
-                    className="mt-1 text-xs font-semibold text-gray-700"
+                    className="mt-2 text-xs font-semibold"
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     ₹100
@@ -58,7 +62,7 @@ function Cart() {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6"
+                    className="w-6 h-6 hover:cursor-pointer"
                   >
                     <path
                       strokeLinecap="round"
@@ -71,14 +75,15 @@ function Cart() {
             </div>
           </div>
 
+          {/* Right Section */}
           <div
-            className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3"
+            className="md:w-1/3 rounded-lg border bg-white p-6 shadow-md"
             style={{
               backgroundColor: mode === "dark" ? "rgb(32 33 34)" : "",
               color: mode === "dark" ? "white" : "",
             }}
           >
-            <div className="mb-2 flex justify-between">
+            <div className="mb-4 flex justify-between">
               <p
                 className="text-gray-700"
                 style={{ color: mode === "dark" ? "white" : "" }}
@@ -107,29 +112,21 @@ function Cart() {
               </p>
             </div>
             <hr className="my-4" />
-            <div className="flex justify-between mb-3">
+            <div className="flex justify-between mb-4">
               <p
                 className="text-lg font-bold"
                 style={{ color: mode === "dark" ? "white" : "" }}
               >
                 Total
               </p>
-              <div className>
-                <p
-                  className="mb-1 text-lg font-bold"
-                  style={{ color: mode === "dark" ? "white" : "" }}
-                >
-                  ₹200
-                </p>
-              </div>
+              <p
+                className="text-lg font-bold"
+                style={{ color: mode === "dark" ? "white" : "" }}
+              >
+                ₹200
+              </p>
             </div>
-            {/* <Modal  /> */}
-            <button
-              type="button"
-              className="w-full  bg-violet-600 py-2 text-center rounded-lg text-white font-bold "
-            >
-              Buy Now
-            </button>
+            <Modal/>
           </div>
         </div>
       </div>
