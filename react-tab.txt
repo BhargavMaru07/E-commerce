@@ -1,0 +1,65 @@
+Yes, in the *react-tabs* library, **tabs are dependent on the order of their corresponding TabPanel components**. The correspondence between a Tab and its TabPanel is determined by their position within the TabList and the list of TabPanel components. Here's how it works:
+
+### Tab and TabPanel Relationship
+1. Each Tab in the TabList is matched to a TabPanel by its *index*.
+   - The **first Tab** (index 0) corresponds to the **first TabPanel**.
+   - The **second Tab** (index 1) corresponds to the **second TabPanel**, and so on.
+
+2. If the order of the TabPanel components is changed, the content shown for a Tab will also change accordingly.
+
+### Example
+jsx
+<Tabs>
+  <TabList>
+    <Tab>Tab 1</Tab>
+    <Tab>Tab 2</Tab>
+    <Tab>Tab 3</Tab>
+  </TabList>
+
+  <TabPanel>
+    <h2>Content for Tab 1</h2>
+  </TabPanel>
+  <TabPanel>
+    <h2>Content for Tab 2</h2>
+  </TabPanel>
+  <TabPanel>
+    <h2>Content for Tab 3</h2>
+  </TabPanel>
+</Tabs>
+
+
+In this setup:
+- Clicking *Tab 1* displays the first TabPanel (Content for Tab 1).
+- Clicking *Tab 2* displays the second TabPanel (Content for Tab 2).
+- Clicking *Tab 3* displays the third TabPanel (Content for Tab 3).
+
+If you **change the order of the TabPanel components**, the displayed content will change accordingly:
+jsx
+<Tabs>
+  <TabList>
+    <Tab>Tab 1</Tab>
+    <Tab>Tab 2</Tab>
+    <Tab>Tab 3</Tab>
+  </TabList>
+
+  <TabPanel>
+    <h2>Content for Tab 2</h2>
+  </TabPanel>
+  <TabPanel>
+    <h2>Content for Tab 3</h2>
+  </TabPanel>
+  <TabPanel>
+    <h2>Content for Tab 1</h2>
+  </TabPanel>
+</Tabs>
+
+
+Now:
+- Clicking *Tab 1* shows Content for Tab 2.
+- Clicking *Tab 2* shows Content for Tab 3.
+- Clicking *Tab 3* shows Content for Tab 1.
+
+### Key Points to Remember
+- The correspondence is *strictly based on index*.
+- If you add or remove a Tab or TabPanel, ensure the indices align, or the displayed content will mismatch.
+- To maintain clarity, always place Tab and TabPanel components in the intended order.
