@@ -9,11 +9,11 @@ import Testimonial from "../../components/testimonial/Testimonial";
 function Home() {
   return (
     <Layout>
-      <HeroSection/>
-      <Filter/>
-      <ProductCard/>
-      <Track/>
-      <Testimonial/>
+      <HeroSection />
+      <Filter />
+      <ProductCard />
+      <Track />
+      <Testimonial />
     </Layout>
   );
 }
