@@ -1,10 +1,62 @@
-import React from 'react'
-
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import MyContext from "../../context/data/MyContext";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/FirebaseConfig";
+import { toast } from "react-toastify";
+import Loader2 from "../../components/loader/Loader2";
 
 function Login() {
+  const context = useContext(MyContext);
+  let { loading, setLoading } = context;
+  let [value, setValue] = useState({
+    email: "",
+    password: "",
+  });
+
+  let navigate = useNavigate();
+
+  let login = async () => {
+    setLoading(true);
+    try {
+      let result = await signInWithEmailAndPassword(
+        auth,
+        value.email,
+        value.password
+      );
+
+      localStorage.setItem("user", JSON.stringify(result));
+      setLoading(false);
+      navigate("/");
+      toast.success("Signin Successfully", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      toast.error("Sigin Failed", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
+
   return (
     <div className=" flex justify-center items-center h-screen">
+      {loading && <Loader2 />}
       <div className=" bg-gray-800 px-10 py-10 rounded-xl ">
         <div className="">
           <h1 className="text-center text-white text-xl mb-4 font-bold">
@@ -13,6 +65,12 @@ function Login() {
         </div>
         <div>
           <input
+            value={value.email}
+            onChange={(e) =>
+              setValue((curr) => {
+                return { ...curr, [e.target.name]: e.target.value };
+              })
+            }
             type="email"
             name="email"
             className=" bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none"
@@ -21,13 +79,23 @@ function Login() {
         </div>
         <div>
           <input
+            value={value.password}
+            onChange={(e) =>
+              setValue((curr) => {
+                return { ...curr, [e.target.name]: e.target.value };
+              })
+            }
+            name="password"
             type="password"
             className=" bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none"
             placeholder="Password"
           />
         </div>
         <div className=" flex justify-center mb-3">
-          <button className=" bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg">
+          <button
+            className=" bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg"
+            onClick={() => login()}
+          >
             Login
           </button>
         </div>
@@ -44,4 +112,4 @@ function Login() {
   );
 }
 
-export default Login
+export default Login;

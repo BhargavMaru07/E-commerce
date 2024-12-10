@@ -63,3 +63,8 @@ Now:
 - The correspondence is *strictly based on index*.
 - If you add or remove a Tab or TabPanel, ensure the indices align, or the displayed content will mismatch.
 - To maintain clarity, always place Tab and TabPanel components in the intended order.
+
+
+
+
+### react-toastify -> npm package for alert animation and Different Pop-Ups 
