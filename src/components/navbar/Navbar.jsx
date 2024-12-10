@@ -11,6 +11,13 @@ function Navbar() {
   let { mode, toggleMode } = context;
   let [open, setOpen] = useState(false);
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const logout = () => {
+    localStorage.clear("user");
+    window.location.href = "/login";
+  };
+
   return (
     <div className="bg-white sticky top-0 z-50  ">
       {/* Mobile menu */}
@@ -74,48 +81,73 @@ function Navbar() {
                       }  w-0 group-hover:w-full group-hover:animate-underline`}
                     ></span>
                   </Link>
-                  <div className="flow-root">
-                    <Link
-                      to={"/order"}
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                      className="-m-2 block p-2 font-medium text-gray-900 relative hover:text-pink-600 group"
-                    >
-                      Order
-                      <span
-                        className={`absolute bottom-0 left-0 h-[2px] ${
-                          mode === "dark" ? "bg-white" : "bg-pink-500"
-                        }  w-0 group-hover:w-full group-hover:animate-underline`}
-                      ></span>
-                    </Link>
-                  </div>
+
+                  {user ? (
+                    <div className="flow-root">
+                      <Link
+                        to={"/order"}
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                        className="-m-2 block p-2 font-medium text-gray-900 relative hover:text-pink-600 group"
+                      >
+                        Order
+                        <span
+                          className={`absolute bottom-0 left-0 h-[2px] ${
+                            mode === "dark" ? "bg-white" : "bg-pink-500"
+                          }  w-0 group-hover:w-full group-hover:animate-underline`}
+                        ></span>
+                      </Link>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
+                  {user?.user?.email === "mbh@gmail.com" ? (
+                    <div className="flow-root">
+                      <Link
+                        to={"/dashboard"}
+                        className="-m-2 block p-2 font-medium text-gray-900 relative hover:text-pink-600 group"
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        admin
+                        <span
+                          className={`absolute bottom-0 left-0 h-[2px] ${
+                            mode === "dark" ? "bg-white" : "bg-pink-500"
+                          }  w-0 group-hover:w-full group-hover:animate-underline`}
+                        ></span>
+                      </Link>
+                    </div>
+                  ) : (
+                    ""
+                  )}
 
                   <div className="flow-root">
-                    <Link
-                      to={"/dashboard"}
-                      className="-m-2 block p-2 font-medium text-gray-900 relative hover:text-pink-600 group"
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                    >
-                      admin
-                      <span
-                        className={`absolute bottom-0 left-0 h-[2px] ${
-                          mode === "dark" ? "bg-white" : "bg-pink-500"
-                        }  w-0 group-hover:w-full group-hover:animate-underline`}
-                      ></span>
-                    </Link>
-                  </div>
-
-                  <div className="flow-root">
-                    <a
-                      className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer relative hover:text-pink-600 group"
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                    >
-                      Logout
-                      <span
-                        className={`absolute bottom-0 left-0 h-[2px] ${
-                          mode === "dark" ? "bg-white" : "bg-pink-500"
-                        }  w-0 group-hover:w-full group-hover:animate-underline`}
-                      ></span>
-                    </a>
+                    {user ? (
+                      <a
+                        onClick={() => logout()}
+                        className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer relative hover:text-pink-600 group"
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        Logout
+                        <span
+                          className={`absolute bottom-0 left-0 h-[2px] ${
+                            mode === "dark" ? "bg-white" : "bg-pink-500"
+                          }  w-0 group-hover:w-full group-hover:animate-underline`}
+                        ></span>
+                      </a>
+                    ) : (
+                      <a
+                        href="/login"
+                        className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer relative hover:text-pink-600 group"
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        LogIn
+                        <span
+                          className={`absolute bottom-0 left-0 h-[2px] ${
+                            mode === "dark" ? "bg-white" : "bg-pink-500"
+                          }  w-0 group-hover:w-full group-hover:animate-underline`}
+                        ></span>
+                      </a>
+                    )}
                   </div>
                   <div className="flow-root">
                     <Link
@@ -229,42 +261,68 @@ function Navbar() {
                       }  w-0 group-hover:w-full group-hover:animate-underline`}
                     ></span>
                   </Link>
-                  <Link
-                    to={"/order"}
-                    className="relative inline-block text-sm font-medium text-gray-700 hover:text-pink-600 group"
-                    style={{ color: mode === "dark" ? "white" : "" }}
-                  >
-                    Order
-                    <span
-                      className={`absolute bottom-0 left-0 h-[2px] ${
-                        mode === "dark" ? "bg-white" : "bg-pink-500"
-                      }  w-0 group-hover:w-full group-hover:animate-underline`}
-                    ></span>
-                  </Link>
-                  <Link
-                    to={"/dashboard"}
-                    className="relative inline-block text-sm font-medium text-gray-700 hover:text-pink-600 group "
-                    style={{ color: mode === "dark" ? "white" : "" }}
-                  >
-                    Admin
-                    <span
-                      className={`absolute bottom-0 left-0 h-[2px] ${
-                        mode === "dark" ? "bg-white" : "bg-pink-500"
-                      }  w-0 group-hover:w-full group-hover:animate-underline`}
-                    ></span>
-                  </Link>
 
-                  <a
-                    className="relative inline-block text-sm font-medium text-gray-700 hover:text-pink-600 group "
-                    style={{ color: mode === "dark" ? "white" : "" }}
-                  >
-                    Logout
-                    <span
-                      className={`absolute bottom-0 left-0 h-[2px] ${
-                        mode === "dark" ? "bg-white" : "bg-pink-500"
-                      }  w-0 group-hover:w-full group-hover:animate-underline`}
-                    ></span>
-                  </a>
+                  {user ? (
+                    <Link
+                      to={"/order"}
+                      className="relative inline-block text-sm font-medium text-gray-700 hover:text-pink-600 group"
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      Order
+                      <span
+                        className={`absolute bottom-0 left-0 h-[2px] ${
+                          mode === "dark" ? "bg-white" : "bg-pink-500"
+                        }  w-0 group-hover:w-full group-hover:animate-underline`}
+                      ></span>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
+
+                  {user?.user?.email === "mbh@gmail.com" ? (
+                    <Link
+                      to={"/dashboard"}
+                      className="relative inline-block text-sm font-medium text-gray-700 hover:text-pink-600 group "
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      Admin
+                      <span
+                        className={`absolute bottom-0 left-0 h-[2px] ${
+                          mode === "dark" ? "bg-white" : "bg-pink-500"
+                        }  w-0 group-hover:w-full group-hover:animate-underline`}
+                      ></span>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
+
+                  {user ? (
+                    <a
+                      onClick={() => logout()}
+                      className="relative inline-block text-sm font-medium text-gray-700 hover:text-pink-600 group "
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      Logout
+                      <span
+                        className={`absolute bottom-0 left-0 h-[2px] ${
+                          mode === "dark" ? "bg-white" : "bg-pink-500"
+                        }  w-0 group-hover:w-full group-hover:animate-underline`}
+                      ></span>
+                    </a>
+                  ) : (
+                    <a
+                      href="/login"
+                      className="relative inline-block text-sm font-medium text-gray-700 hover:text-pink-600 group "
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      LogIn
+                      <span
+                        className={`absolute bottom-0 left-0 h-[2px] ${
+                          mode === "dark" ? "bg-white" : "bg-pink-500"
+                        }  w-0 group-hover:w-full group-hover:animate-underline`}
+                      ></span>
+                    </a>
+                  )}
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
