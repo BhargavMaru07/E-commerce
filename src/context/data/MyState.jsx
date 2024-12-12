@@ -122,10 +122,9 @@ export const MyState = ({ children }) => {
 
   //editHandle....................
 
-  let editHandle = (item)=>{
-    setProducts(item)
-  }
-
+  let editHandle = (item) => {
+    setProducts(item);
+  };
 
   //Update Products................
 

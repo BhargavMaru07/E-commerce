@@ -1,10 +1,11 @@
 import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import MyContext from "../../context/data/MyContext";
 import { FiSun } from "react-icons/fi";
 import { BsFillCloudSunFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 function Navbar() {
   const context = useContext(MyContext);
@@ -18,6 +19,10 @@ function Navbar() {
     window.location.href = "/login";
   };
 
+  const cardItems = useSelector((state) => state.cart);
+
+
+  
   return (
     <div className="bg-white sticky top-0 z-50  ">
       {/* Mobile menu */}
@@ -387,7 +392,7 @@ function Navbar() {
                       className="ml-2 text-sm font-medium text-gray-700 group-"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
-                      0
+                      {cardItems.length}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </Link>

@@ -73,7 +73,7 @@ function Track() {
                   Free Shipping
                 </h2>
                 <p className="leading-relaxed">
-                  We ship all over India for FREE.
+                  We are shiping in  all over India for FREE.
                 </p>
               </div>
             </div>
