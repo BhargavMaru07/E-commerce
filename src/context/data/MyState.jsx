@@ -11,9 +11,11 @@ import {
   doc,
   deleteDoc,
   setDoc,
+  getDocs,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { fireDB } from "../../firebase/FirebaseConfig";
+import { data } from "autoprefixer";
 
 export const MyState = ({ children }) => {
   let [mode, setMode] = useState("light");
@@ -116,10 +118,6 @@ export const MyState = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    getProductData();
-  }, []);
-
   //editHandle....................
 
   let editHandle = (item) => {
@@ -168,6 +166,61 @@ export const MyState = ({ children }) => {
       toast.error("Error in deleteProduct!!!!!");
     }
   };
+
+  //order data.........................
+
+  let [order, setOrder] = useState([]);
+
+  let getOrderData = async () => {
+    setLoading(true);
+    try {
+      let result = await getDocs(collection(fireDB, "orders"));
+      let orderArray = [];
+
+      result.forEach((doc) => {
+        orderArray.push(doc.data());
+      });
+      setLoading(false);
+      setOrder(orderArray);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+
+  //user data......................
+
+  let [user,setUser] = useState([])
+
+  let getUserData = async ()=>{
+      setLoading(true)
+      let userArray = []
+
+      try {
+        let result = await getDocs(collection(fireDB,'users'))
+        result.forEach((doc)=>{
+          userArray.push(doc.data())
+        })
+        setLoading(false)
+        setUser(userArray)
+      } catch (error) {
+        console.log(error);
+        setLoading(false)
+      }
+  }
+
+  useEffect(() => {
+    getProductData();
+    getOrderData();
+    getUserData();
+  }, []);
+
+
+  let [searchKey,setSearchKey] = useState('')
+  let [filterType,setFilterType] = useState('')
+  let [filterPrice,setFilterPrice] = useState('')
+
   return (
     //for multiple value, we create object and wrape all values in it
     <MyContext.Provider
@@ -183,6 +236,14 @@ export const MyState = ({ children }) => {
         editHandle,
         updateProduct,
         deleteProduct,
+        order,
+        user,
+        searchKey,
+        setSearchKey,
+        filterType,
+        setFilterType,
+        filterPrice,
+        setFilterPrice
       }}
     >
       {children}

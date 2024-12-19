@@ -1,8 +1,16 @@
 import React from 'react'
+import Filter from '../../components/filter/Filter'
+import ProductCard from '../../components/productCard/ProductCard'
+import Layout from '../../components/layout/Layout'
 
 function AllProducts() {
   return (
-    <div>AllProducts</div>
+    <Layout>
+
+      <Filter/>
+      <ProductCard/>
+    
+    </Layout>
   )
 }
 

@@ -5,6 +5,8 @@ import Modal from "../../components/modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteFromCart } from "../../redux/CartSlice";
 import { toast } from "react-toastify";
+import { fireDB } from "../../firebase/FirebaseConfig";
+import { addDoc, collection } from "firebase/firestore";
 
 // function Cart() {
 //   const context = useContext(MyContext);
@@ -149,8 +151,6 @@ import { toast } from "react-toastify";
 // export default Cart;
 
 
-
-
 function Cart() {
   const context = useContext(MyContext);
   const { mode } = context;
@@ -182,6 +182,79 @@ function Cart() {
   let shipping = parseInt(100)
 
   let grandTotal = totalAmount+shipping
+
+
+  
+let [name, setName] = useState("");
+let [address, setAddress] = useState("");
+let [pincode, setPincode] = useState("");
+let [phoneNumber, setPhoneNumber] = useState("");
+
+let buyNow = async () => {
+  //validation
+
+  if (name === "" || address === "" || pincode === "" || phoneNumber === "") {
+    return toast.error("All fields are required", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  }
+
+  let addressInfo = {
+    name,
+    address,
+    pincode,
+    phoneNumber,
+    date: new Date().toLocaleString("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    }),
+  };
+
+  // console.log(addressInfo);
+
+      //Store in firebase..
+
+      const orderInfo = {
+        cartItems,
+        addressInfo,
+        date: new Date().toLocaleString("en-US", {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+        }),
+        email:JSON.parse(localStorage.getItem("user")).user.email,
+        userid:JSON.parse(localStorage.getItem("user")).user.uid,
+      };
+
+      try {
+        const result = addDoc(collection(fireDB,"orders"),orderInfo)
+        setName("")
+        setAddress("")
+        setPincode("")
+        setPhoneNumber("")
+        return toast.success("Order Successfull", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
 
   return (
     <Layout>
@@ -310,10 +383,20 @@ function Cart() {
                   </p>
                 </div>
               </div>
-              <Modal />
+              <Modal
+                name={name}
+                address={address}
+                pincode={pincode}
+                phoneNumber={phoneNumber}
+                setName={setName}
+                setAddress={setAddress}
+                setPincode={setPincode}
+                setPhoneNumber={setPhoneNumber}
+                buyNow={buyNow}
+              />
             </div>
-          ):(
-           ''
+          ) : (
+            ""
           )}
         </div>
       </div>
